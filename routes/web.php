@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuejaController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\PermisoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +30,6 @@ Route::middleware([
     })->name('dashboard');
 
     Route::resource('/quejas', QuejaController::class)->names('quejas');
+    Route::resource('/roles', RoleController::class)->names('roles');
+    Route::resource('/permisos', PermisoController::class)->names('permisos');
 });

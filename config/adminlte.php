@@ -311,13 +311,17 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        // [
-        //     'text'        => 'pages',
-        //     'url'         => 'admin/pages',
-        //     'icon'        => 'far fa-fw fa-file',
-        //     'label'       => 4,
-        //     'label_color' => 'success',
-        // ],
+        ['header' => 'Usuarios'],
+        [
+            'text'        => 'Roles',
+            'route'         => 'roles.index',
+            'icon'        => 'far fa-fw fa-file',
+        ],
+        [
+            'text'        => 'Permisos',
+            'route'         => 'permisos.index',
+            'icon'        => 'far fa-fw fa-file',
+        ],
         ['header' => 'Quejas'],
         [
             'text' => 'Quejas',
