@@ -311,21 +311,26 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        ['header' => 'Usuarios'],
+        ['header' => 'Usuarios',
+          'can' => 'Menu'
+        ],
         [
             'text'        => 'Roles',
             'route'         => 'roles.index',
             'icon'        => 'far fa-fw fa-file',
+            'can' => 'Menu',
         ],
         [
             'text'        => 'Permisos',
             'route'         => 'permisos.index',
             'icon'        => 'far fa-fw fa-file',
+            'can' => 'Menu',
         ],
         [
             'text'        => 'Usuarios',
             'route'         => 'asignar.index',
             'icon'        => 'far fa-fw fa-file',
+            'can' => 'Menu',
         ],
         ['header' => 'Quejas'],
         [
@@ -376,22 +381,22 @@ return [
         //         ],
         //     ],
         // ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],
+        // ['header' => 'labels'],
+        // [
+        //     'text'       => 'important',
+        //     'icon_color' => 'red',
+        //     'url'        => '#',
+        // ],
+        // [
+        //     'text'       => 'warning',
+        //     'icon_color' => 'yellow',
+        //     'url'        => '#',
+        // ],
+        // [
+        //     'text'       => 'information',
+        //     'icon_color' => 'cyan',
+        //     'url'        => '#',
+        // ],
     ],
 
     /*
