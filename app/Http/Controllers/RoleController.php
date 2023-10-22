@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
@@ -47,17 +48,20 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Role $role)
     {
-        //
+        //$role = Role::find($id);
+        $permisos = Permission::all();
+        return view('sistema.user.RolPermiso', compact('role', 'permisos')); 
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Role $role)
     {
-        //
+      $role->Permissions()->sync($request->permisos);
+      return redirect()->route('roles.edit', $role);
     }
 
     /**
