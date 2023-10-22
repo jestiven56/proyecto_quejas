@@ -16,7 +16,11 @@
 
         <div class="row">
             <div class="col-md-4 mx-auto">
-                <x-adminlte-input name="tipo" placeholder="Tipo (Queja O Reclamo)" fgroup-class="w-100" disable-feedback value="{{$queja->tipo}}"/>
+                <x-adminlte-select name="tipo" label="Tipo" fgroup-class="w-100" disable-feedback>
+                    <option value="">--Seleccione--</option>
+                    <option value="Queja" @if($queja->tipo == 'Queja') selected @endif>Queja</option>
+                    <option value="Reclamo" @if($queja->tipo == 'Reclamo') selected @endif>Reclamo</option>
+                </x-adminlte-select>
             </div>
         </div>
 

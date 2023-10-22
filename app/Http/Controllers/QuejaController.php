@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Queja;
+use App\Models\User;
 
 class QuejaController extends Controller
 {
@@ -12,7 +13,10 @@ class QuejaController extends Controller
      */
     public function index()
     {
-      $quejas = Queja::all();
+      $quejas = Queja::join('users', 'quejas.id_usuario', '=', 'users.id')
+                      ->select('quejas.*', 'users.email as email_usuario')
+                      ->orderBy('quejas.id', 'desc')
+                      ->get();
 
       return view('sistema.ListaQuejas', compact('quejas'));
     }
@@ -22,7 +26,8 @@ class QuejaController extends Controller
      */
     public function create()
     {
-        return view('sistema.QuejaNuevo');
+      $id_usuario = auth()->user()->id;
+      return view('sistema.QuejaNuevo', compact('id_usuario'));
     }
 
     /**
@@ -40,12 +45,12 @@ class QuejaController extends Controller
       $queja->tipo = $request->input('tipo');
       $queja->descripcion = $request->input('descripcion');
       $queja->estado = 1;
-      $queja->id_usuario = 1;
+      $queja->id_usuario = $request->input('id_usuario');
 
       $queja->save();
       
       
-      return back()->with('message', 'ok');
+      return back()->with('message', 'Creado Correctamente');
     }
 
     /**

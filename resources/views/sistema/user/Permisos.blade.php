@@ -49,9 +49,9 @@
                       <td>{{$permiso->name}}</td>
                       <td>
                         
-                        <a href="{{route('permisos.edit', $permiso)}}" class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
-                            <i class="fa fa-lg fa-fw fa-pen"></i>
-                        </a>
+                        <button class="btn btn-xs btn-default text-primary mx-1 shadow btn-edit" data-toggle="modal" data-target="#modalEditar" data-id="{{ $permiso->id }}" title="Editar">
+                          <i class="fa fa-lg fa-fw fa-pen"></i>
+                        </button>
 
                         <form style="display: inline" action="{{route('permisos.destroy', $permiso)}}" method="POST" class="formEliminar">
                           @csrf
@@ -84,6 +84,22 @@
 
     </x-adminlte-modal>
 
+    <x-adminlte-modal id="modalEditar" title="Editar Permiso" theme="primary"
+        icon="fas fa-pen" size='lg' disable-animations>
+      <!-- Formulario para editar permiso -->
+      <form id="formEditarPermiso" method="post">
+        @csrf
+        @method('put')
+        <div class="row">
+          <x-adminlte-input label="Permiso" name="permiso" placeholder="Aquí su Permiso" fgroup-class="col-md-6 mx-auto" disable-feedback />
+        </div>
+        <div class="row">
+          <x-adminlte-button class="mx-auto mb-2" type="submit" label="Guardar" theme="primary" icon="fas fa-lg fa-save"/>
+        </div>
+      </form>
+    </x-adminlte-modal>
+
+
 @stop
 
 @section('css')
@@ -111,5 +127,24 @@
     });
   });
 </script>
+<script>
+  $(document).ready(function(){
+    // Manejar el evento de hacer clic en el botón de editar
+    $('.btn-edit').click(function(){
+      var permisoId = $(this).data('id');
+      var url = '/permisos/' + permisoId + '/edit'; // Ruta para obtener datos del permiso
+
+      // Realizar una solicitud AJAX para obtener los datos del permiso
+      $.get(url, function(data){
+        // Rellenar el formulario en el modal de edición con los datos del permiso
+        $('#formEditarPermiso input[name="permiso"]').val(data.name);
+
+        // Configurar la acción del formulario para enviar datos de actualización al servidor
+        $('#formEditarPermiso').attr('action', '/permisos/' + permisoId);
+      });
+    });
+  });
+</script>
+
 
 @stop

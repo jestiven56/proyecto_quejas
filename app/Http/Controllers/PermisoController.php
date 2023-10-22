@@ -47,15 +47,18 @@ class PermisoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+      $permiso = Permission::find($id);
+      return response()->json($permiso);
     }
-
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+      $permiso = Permission::find($id);
+      $permiso->name = $request->input('permiso');
+      $permiso->save();
+      return back();
     }
 
     /**

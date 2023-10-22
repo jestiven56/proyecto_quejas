@@ -3,18 +3,12 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Usuarios <small>Consulta</small></h1>
+    <h1>Usuarios <small>Roles</small></h1>
 @stop
 
 @section('content')
     
     <div class="card">
-
-      <div class="card-header">
-
-        <x-adminlte-button label="Nuevo" type="button" title="Nuevo Usuario" class="float-right" data-toggle="modal" data-target="#modalPurple" theme="primary"/>
-
-      </div>
       
       <div class="card-body">
 
@@ -30,10 +24,7 @@
           $btnDelete = '<button type="submit" class="btn btn-xs btn-default text-danger mx-1 shadow" title="Eliminar">
                             <i class="fa fa-lg fa-fw fa-trash"></i>
                         </button>';
-          $btnDetails = '<button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details">
-                            <i class="fa fa-lg fa-fw fa-eye"></i>
-                        </button>';
-          
+
           $config=[
             'language' =>[
               'url' => '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',
@@ -52,7 +43,7 @@
                       <td>
                         
                         <a href="{{route('asignar.edit', $user)}}" class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
-                            <i class="fa fa-lg fa-fw fa-pen"></i>
+                            <i class="fa fa-lg fa-fw fa-eye"></i>
                         </a>
 
                         <form style="display: inline" action="{{route('asignar.destroy', $user)}}" method="POST" class="formEliminar">

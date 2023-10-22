@@ -50,7 +50,7 @@
               @foreach($quejas as $queja)
                   <tr>
                       <td>{{$queja->id}}</td>
-                      <td>{{$queja->usuario_id}}</td>
+                      <td>{{$queja->email_usuario}}</td>
                       <td>{{$queja->tipo}}</td>
                       <td>{{$queja->descripcion}}</td>
                       <td>

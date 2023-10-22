@@ -18,7 +18,7 @@ use App\Http\Controllers\AsignarController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::middleware([
@@ -33,5 +33,6 @@ Route::middleware([
     Route::resource('/quejas', QuejaController::class)->names('quejas');
     Route::resource('/roles', RoleController::class)->names('roles');
     Route::resource('/permisos', PermisoController::class)->names('permisos');
+    Route::get('/permisos/{id}/edit', 'PermisoController@edit');
     Route::resource('/asignar', AsignarController::class)->names('asignar');
 });
