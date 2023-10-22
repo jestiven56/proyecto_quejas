@@ -10,14 +10,13 @@
     <p>Lista Queja-Reclamo</p>
     
     <div class="card">
-      
-        <div class="row">
-          <div class="col-md-12 d-flex justify-content-end ">
-            <a href="{{route('quejas.create')}}" type="button" title="Nueva Queja-Reclamo" class="btn btn-primary mr-3 mt-2">Nuevo</a>
-          </div>
-      </div>
-      
-      
+      @can('Crear-Queja')
+        <div class="card-head">
+          <a type="button" href="{{route('quejas.create')}}" title="Nueva Queja-Reclamo" class="btn btn-primary mr-3 mt-2 float-right">
+            Nuevo
+          </a>
+        </div>
+      @endcan
       
       <div class="card-body">
 
@@ -59,12 +58,13 @@
                         <a href="{{route('quejas.edit', $queja)}}" class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
                             <i class="fa fa-lg fa-fw fa-pen"></i>
                         </a>
-
-                        <form style="display: inline" action="{{route('quejas.destroy', $queja)}}" method="POST" class="formEliminar">
-                          @csrf
-                          @method('delete')
-                          {!! $btnDelete!!}
-                        </form>
+                        @can('Eliminar-Queja')
+                          <form style="display: inline" action="{{route('quejas.destroy', $queja)}}" method="POST" class="formEliminar">
+                            @csrf
+                            @method('delete')
+                            {!! $btnDelete!!}
+                          </form>
+                        @endcan
 
                       </td>
                   </tr>

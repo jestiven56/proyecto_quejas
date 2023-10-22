@@ -22,6 +22,7 @@
           $heads = [
               'ID',
               'Nombre',
+              'Correo',
               ['label' => 'Actions', 'no-export' => true, 'width' => 15],
           ];
 
@@ -47,6 +48,7 @@
                   <tr>
                       <td>{{$user->id}}</td>
                       <td>{{$user->name}}</td>
+                      <td>{{$user->email}}</td>
                       <td>
                         
                         <a href="{{route('asignar.edit', $user)}}" class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
