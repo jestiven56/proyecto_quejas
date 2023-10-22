@@ -322,6 +322,11 @@ return [
             'route'         => 'permisos.index',
             'icon'        => 'far fa-fw fa-file',
         ],
+        [
+            'text'        => 'Usuarios',
+            'route'         => 'asignar.index',
+            'icon'        => 'far fa-fw fa-file',
+        ],
         ['header' => 'Quejas'],
         [
             'text' => 'Quejas',
