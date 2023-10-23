@@ -1,3 +1,14 @@
+<style>
+    .sidebar-ligth{
+      background: #03b55e !important;
+    }
+    .navbar-white, a{
+      color: #ffffff !important;
+    }
+    .navbar-white{
+      background: #03b55e !important;
+    }
+</style>
 <?php
 
 return [
@@ -64,7 +75,7 @@ return [
     */
 
     'logo' => '<b>+</b>Fusagasuga',
-    'logo_img' => 'vendor/adminlte/dist/img/logo-header.png',
+    'logo_img' => 'vendor/adminlte/dist/img/logo-header.jpg',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -86,7 +97,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/logo-header.png',
+            'path' => 'vendor/adminlte/dist/img/logo-header.jpg',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -109,7 +120,7 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/logo-header.png',
+            'path' => 'vendor/adminlte/dist/img/logo-header.jpg',
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
             'width' => 300,
@@ -192,9 +203,9 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar' => 'sidebar-ligth elevation-4',
     'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-white navbar-light',
+    'classes_topnav' => 'navbar-white navbar-ligth',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 

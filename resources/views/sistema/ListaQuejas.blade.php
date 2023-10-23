@@ -55,16 +55,20 @@
                       <td>{{$queja->descripcion}}</td>
                       <td>
                         
-                        <a href="{{route('quejas.edit', $queja)}}" class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
-                            <i class="fa fa-lg fa-fw fa-pen"></i>
-                        </a>
-                        @can('Eliminar-Queja')
-                          <form style="display: inline" action="{{route('quejas.destroy', $queja)}}" method="POST" class="formEliminar">
-                            @csrf
-                            @method('delete')
-                            {!! $btnDelete!!}
-                          </form>
-                        @endcan
+                        @if($queja->id_usuario==Auth::user()->id || Auth::user()->hasRole('Administrador'))
+                          <a href="{{route('quejas.edit', $queja)}}" class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
+                              <i class="fa fa-lg fa-fw fa-pen"></i>
+                          </a>
+                          
+                          
+                          @can('Eliminar-Queja')
+                            <form style="display: inline" action="{{route('quejas.destroy', $queja)}}" method="POST" class="formEliminar">
+                              @csrf
+                              @method('delete')
+                              {!! $btnDelete!!}
+                            </form>
+                          @endcan
+                        @endif
 
                       </td>
                   </tr>
