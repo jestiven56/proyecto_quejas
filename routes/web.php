@@ -35,4 +35,5 @@ Route::middleware([
     Route::resource('/permisos', PermisoController::class)->names('permisos');
     Route::get('/permisos/{id}/edit', 'PermisoController@edit');
     Route::resource('/asignar', AsignarController::class)->names('asignar');
+    Route::post('/quejas/guardarSeguimiento', [QuejaController::class, 'guardarSeguimiento'])->name('quejas.guardarSeguimiento');
 });

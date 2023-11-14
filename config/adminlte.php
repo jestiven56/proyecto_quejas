@@ -9,6 +9,7 @@
       background: #03b55e !important;
     }
 </style>
+
 <?php
 
 return [
@@ -345,7 +346,7 @@ return [
         ],
         ['header' => 'Quejas'],
         [
-            'text' => 'Quejas-Reclamos',
+            'text' => 'Solicitudes',
             'route'  => 'quejas.index',
             'icon' => 'fas fa-fw fa-user',
         ],

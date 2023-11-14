@@ -3,39 +3,45 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Solicitud <small>Nuevo</small></h1>
+    <h1>Solicitud <small>Respuesta</small></h1>
 @stop
 
 @section('content')
     <p>Informacion de la Solicitud</p>
 
-    <form action="{{route('quejas.store')}}" method="POST">
+    <form action="{{route('quejas.guardarSeguimiento')}}" method="POST">
       @csrf
       <div class="container mt-5">
 
         <div class="row">
             <div class="col-md-4 mx-auto">
-                <x-adminlte-select name="tipo" label="Tipo" fgroup-class="w-100" disable-feedback>
-                    <option value="">--Seleccione--</option>
-                    <option value="Peticion">Peticion</option>
-                    <option value="Queja">Queja</option>
-                    <option value="Reclamo">Reclamo</option>
-                    <option value="Sugerencia">Sugerencia</option>
-                </x-adminlte-select>
+                <x-adminlte-input name="tipo" label="Tipo" placeholder="Tipo" value="{{$queja->tipo}}" fgroup-class="w-100" readonly disable-feedback />
             </div>
         </div>
 
         <div class="row">
           <div class="col-md-6 mx-auto">
-              <x-adminlte-textarea name="descripcion" placeholder="Descripcion" rows="5" fgroup-class="w-100" disable-feedback value="{{old('descripcion')}}"/>
+              <x-adminlte-textarea name="descripcion" placeholder="Descripcion" readonly rows="5" fgroup-class="w-100" disable-feedback >
+                {{$queja->descripcion}}
+              </x-adminlte-textarea>
           </div>
         </div>
 
         <div class="row">
+          <div class="col-md-6 mx-auto">
+              <x-adminlte-textarea name="respuesta" placeholder="Respuesta" rows="5" fgroup-class="w-100" >
+                {{$queja->respuesta}}
+              </x-adminlte-textarea>
+          </div>
+        </div>
+
+
+
+        <div class="row">
           <div class=" mx-auto">
-            <input type="hidden" name="id_usuario" value="{{$id_usuario}}">
-            <x-adminlte-button label="Guardar" type="submit" theme="primary" icon="fas fa-save"/>
-            <a href="{{route('quejas.index')}}" class="btn btn-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="{{route('quejas.index')}}" class="btn btn-secondary">Volver</a>
+            <input type="hidden" name="id" value="{{$queja->id}}">
           </div>
         </div>
 
@@ -50,6 +56,7 @@
 @stop
 
 @section('js')
+
     @if (session("message")){
       <script>
         $(document).ready(function(){
@@ -59,7 +66,7 @@
             'title': 'Resultado',
             'text': message,
             'icon': 'success',
-            didClose: () => {
+             didClose: () => {
               // Redirige a la página deseada después de que se cierre el cuadro de diálogo
               window.location.href = '/quejas';
             }

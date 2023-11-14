@@ -3,39 +3,43 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Queja-Reclamo <small>Editar</small></h1>
+    <h1>Queja-Reclamo <small>Ver</small></h1>
 @stop
 
 @section('content')
     <p>Informacion de la Queja-Reclamo</p>
 
-    <form action="{{route('quejas.update', $queja)}}" method="POST">
+    <form action="" method="POST">
       @csrf
-      @method('PUT')
       <div class="container mt-5">
 
         <div class="row">
             <div class="col-md-4 mx-auto">
-                <x-adminlte-select name="tipo" label="Tipo" fgroup-class="w-100" disable-feedback>
-                    <option value="">--Seleccione--</option>
-                    <option value="Queja" @if($queja->tipo == 'Queja') selected @endif>Queja</option>
-                    <option value="Reclamo" @if($queja->tipo == 'Reclamo') selected @endif>Reclamo</option>
-                </x-adminlte-select>
+                <x-adminlte-input name="tipo" label="Tipo" placeholder="Tipo" value="{{$queja->tipo}}" fgroup-class="w-100" readonly disable-feedback />
             </div>
         </div>
 
         <div class="row">
           <div class="col-md-6 mx-auto">
-              <x-adminlte-textarea name="descripcion" placeholder="Descripcion" rows="5" fgroup-class="w-100" disable-feedback >
+              <x-adminlte-textarea name="descripcion" placeholder="Descripcion" readonly rows="5" fgroup-class="w-100" disable-feedback >
                 {{$queja->descripcion}}
               </x-adminlte-textarea>
           </div>
         </div>
 
+        
+          <div class="row">
+            <div class="col-md-6 mx-auto">
+                <x-adminlte-textarea name="respuesta" label="Respuesta" readonly placeholder="Respuesta" rows="5" fgroup-class="w-100" >
+                  {{$queja->respuesta_queja}}
+                </x-adminlte-textarea>
+            </div>
+          </div>
+        
+
         <div class="row">
           <div class=" mx-auto">
-            <x-adminlte-button label="Guardar" type="submit" theme="primary" icon="fas fa-save"/>
-            <a href="{{route('quejas.index')}}" class="btn btn-secondary">Cancelar</a>
+            <a href="{{route('quejas.index')}}" class="btn btn-secondary">Volver</a>
           </div>
         </div>
 

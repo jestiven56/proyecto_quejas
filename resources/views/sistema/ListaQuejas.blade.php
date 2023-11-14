@@ -3,11 +3,11 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Queja-Reclamo <small>Consulta</small></h1>
+    <h1>Solicitudes <small>Consulta</small></h1>
 @stop
 
 @section('content')
-    <p>Lista Queja-Reclamo</p>
+    <p>Lista Solicitudes</p>
     
     <div class="card">
       @can('Crear-Queja')
@@ -22,11 +22,13 @@
 
         @php
           $heads = [
-              'ID',
+              
+              ['label' => 'fecha', 'width' => 20],
               'Usuario',
               'Tipo',
               ['label' => 'Descripcion', 'width' => 50],
-              ['label' => 'Actions', 'no-export' => true, 'width' => 15],
+              ['label' => 'Estado', 'no-export' => true, 'width' => 10],
+              ['label' => 'Acciones', 'no-export' => true, 'width' => 10],
           ];
 
           
@@ -49,25 +51,25 @@
           <x-adminlte-datatable  id="table1" :heads="$heads" :config="$config">
               @foreach($quejas as $queja)
                   <tr>
-                      <td>{{$queja->id}}</td>
+                      <td>{{$queja->fecha_sin_hora}}</td>
                       <td>{{$queja->email_usuario}}</td>
                       <td>{{$queja->tipo}}</td>
                       <td>{{$queja->descripcion}}</td>
                       <td>
-                        
-                        @if($queja->id_usuario==Auth::user()->id || Auth::user()->hasRole('Administrador'))
-                          <a href="{{route('quejas.edit', $queja)}}" class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
-                              <i class="fa fa-lg fa-fw fa-pen"></i>
+                        @if($queja->estado==1)
+                          <span class="badge badge-danger">Pendiente</span>
+                        @else
+                          <span class="badge badge-success">Atendido</span>
+                        @endif
+                      <td>
+                        <a href="{{route('quejas.edit', $queja)}}" class="btn btn-xs btn-default text-primary mx-1 shadow" title="Ver">
+                            <i class="fa fa-lg fa-fw fa-eye"></i>
+                        </a>
+                        @if(($queja->id_usuario==Auth::user()->id || Auth::user()->hasRole('Administrador')) && $queja->estado==1)
+                          
+                          <a href="{{route('quejas.show', $queja)}}" class="btn btn-xs btn-default text-primary mx-1 shadow" title="Seguimiento">
+                              <i class="fa fa-lg fa-fw fa-forward"></i>
                           </a>
-                          
-                          
-                          @can('Eliminar-Queja')
-                            <form style="display: inline" action="{{route('quejas.destroy', $queja)}}" method="POST" class="formEliminar">
-                              @csrf
-                              @method('delete')
-                              {!! $btnDelete!!}
-                            </form>
-                          @endcan
                         @endif
 
                       </td>
